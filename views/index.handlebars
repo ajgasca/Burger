@@ -2,32 +2,34 @@
 
 <h2>Welcome to Good Burger, Home of the Good Burger, May I Take Your Order?!</h2>
 
+<h3>Fress Off the Grill!</h3>
+
 <ul>
-  {{#each burger}}
+  {{#each burgers}}
     {{#unless devoured}}
-      {{> burger_name devoured=true}}
+      {{ id }}: {{burger_name}}
+      <button type="button" class="devourButton" burger_id="{{ id }}">Devour!</button>
     {{/unless}}
   {{/each}}
 </ul>
 
-<h2>Burgers You Have Eaten!</h2>
+<h3>Burgers You Have Eaten!</h3>
 
 <ul>
-  {{#each burger}}
+  {{#each burgers}}
     {{#if devoured}}
-      {{> burger_name devoured=false}}
+      {{ id }}: {{burger_name}}
     {{/if}}
   {{/each}}
 </ul>
 
 <h2>Order A Burger</h2>
 <h4>Enter a Burger You Want to Eat. Click the "Order Burger" Button.</h4>
-<form class="create-form">
 
-  <div class="form-group">
+<div>
+  <form class="create-form" class="form-group">
     <label for="burger">Burger Name:</label>
-    <input type="text" id="burger" name="name">
-  </div>
-
-  <button type="submit">Order Burger</button>
-</form>
+    <input type="text" id="addburger" placeholder="Enter a burger you would like to order" name="name">
+    <button type="submit" id="burgerSubmit">Order Burger</button>
+  </form>
+</div>

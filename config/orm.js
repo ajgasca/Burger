@@ -1,4 +1,4 @@
-const connection = require("../config/connection.js");
+var connection = require("../config/connection.js");
 
 function printQuestionMarks(num) {
     var arr = [];
@@ -31,11 +31,11 @@ function printQuestionMarks(num) {
   
   
 
-const orm = {
+var orm = {
 
-  selectAll: function(tableInput, cb) {
-    let queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+  all: function (tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function (err, result) {
       if (err) {
          throw err;
       }
@@ -43,7 +43,7 @@ const orm = {
     });
   },
 
-  insertOne: function(table, cols, vals, cb) {
+  create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -55,16 +55,16 @@ const orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, vals, function (err, result) {
       if (err) {
         throw err;
       }
-
+      console.log(result);
       cb(result);
     });
   },
 
-  updateOne: function(table, objColVals, condition, cb) {
+  update: function (table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -73,7 +73,7 @@ const orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
