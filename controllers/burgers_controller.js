@@ -4,7 +4,11 @@ var router = express.Router();
 
 var burger = require("../models/burger.js");
 
-router.get("/", function (req, res) {
+router.get("/", function(req, res) {
+    res.redirect("/burgers")
+})
+
+router.get("/burgers", function (req, res) {
   burger.all(function(data) {
    var hbsObject = {
      burgers: data
@@ -14,29 +18,28 @@ router.get("/", function (req, res) {
    });
 });
 
-router.post("/api/burgers", function(req, res) {
-  burger.create(["burger_name", "devoured"], [req.body.newBurgerName, req.body.devoured], function(result) {
+router.post("/burgers/create", function(req, res) {
+  burger.create([
+    "burger_name", "devoured"
+  ], [
+    req.body.burger_name, req.body.devoured
+  ], function(data) {
     
-    res.json({ id: result.insertId });
+    res.redirect("/burgers");
 
   });
 });
 
-router.put("/api/burgers/:id", function(req, res) {
+router.put("/burgers/update/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
 
   burger.update({
     devoured: req.body.devoured
-  }, condition, function(result) {
+  }, condition, function() {
 
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
+    res.redirect("/burgers");
 
   });
 });

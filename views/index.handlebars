@@ -6,9 +6,12 @@
 
 <ul>
   {{#each burgers}}
-    {{#unless devoured}}
-      {{ id }}: {{burger_name}}
-      <button type="button" class="devourButton" burger_id="{{ id }}">Devour!</button>
+    {{#unless this.devoured}}
+      {{ this.id }}: {{this.burger_name}}
+      <form action="burgers/update/{{this.id}}?_method=PUT">
+			    <input type="hidden" name="devoured" value="true">
+			    <button class="devour-button" type="submit">Devour It!</button>
+			</form>
     {{/unless}}
   {{/each}}
 </ul>
@@ -17,8 +20,10 @@
 
 <ul>
   {{#each burgers}}
-    {{#if devoured}}
-      {{ id }}: {{burger_name}}
+    {{#if this.devoured}}
+    <li>
+      {{ this.id }}: {{this.burger_name}}
+    </li>
     {{/if}}
   {{/each}}
 </ul>
@@ -27,9 +32,12 @@
 <h4>Enter a Burger You Want to Eat. Click the "Order Burger" Button.</h4>
 
 <div>
-  <form class="create-form" class="form-group">
-    <label for="burger">Burger Name:</label>
-    <input type="text" id="addburger" placeholder="Enter a burger you would like to order" name="name">
+  <form class="create-update-form" action="burgers/create" method="POST">
+    <div class="form-group">
+      <input type="text" id="ca" name="burger_name">
+    </div>
     <button type="submit" id="burgerSubmit">Order Burger</button>
+    
   </form>
 </div>
+

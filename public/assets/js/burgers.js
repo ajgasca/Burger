@@ -1,6 +1,7 @@
-$(function () {
-    $("#burgerSubmit").on("click", function (event) {
+$(document).ready(function () {
 
+    $("#burgerSubmit").on("click", function (event) {
+        console.log(event);
         event.preventDefault();
 
         let newBurgerName = { newBurgerName: $("#addburger").val().trim() };
@@ -20,7 +21,7 @@ $(function () {
 
         //update the devoured boolean in the database
         let burgerUpdateId = $(this).attr("burger_id");
-        $.ajax("/api/burgers/" + burgerUpdateId, {
+        $.ajax("/api/burgers/:id" + burgerUpdateId, {
             type: "PUT"
         }).then(function (res) {
 
@@ -29,5 +30,7 @@ $(function () {
         });
 
     });
+
+
 
 });
