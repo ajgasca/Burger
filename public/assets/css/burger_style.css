@@ -1,0 +1,45 @@
+body {
+    background-image: url("../images/burger-and-fries.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "PT Sans", sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 70px;
+    color: red;
+    text-align: center;
+    text-shadow: 1px 1px 0 black;
+}
+
+.subtitle, h4 {
+    font-family: 'Fugaz One', cursive;
+    color: yellow;
+    text-align: center;
+}
+
+.order, .lists {
+    text-align: center;
+}
+
+.burger-list, h2 {
+    font-family: 'Oswald', sans-serif;
+    color: yellow;
+    font-size: 30px;
+    background-color: red
+}
+button {
+    background-color: orange;
+    color: forestgreen;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    border-color: forestgreen;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+}
